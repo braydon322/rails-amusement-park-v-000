@@ -7,4 +7,5 @@ delete "/signout", to: "sessions#destroy"
 
 resources :attractions
 resources :users
+resources :rides
 end

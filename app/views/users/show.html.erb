@@ -1,7 +1,26 @@
-<%= binding.pry %>
+<% if flash[:notice] %>
+   <div class="notice" style="color: green"><%= flash[:notice] %></div>
+ <% end %>
+ <br>
+ 
+<% if @user.admin == true %>
+<b>ADMIN</b>
+<% end %>
 
-Name: <%= @user.name %>
-Mood: <%= @user.mood %>
-Height: <%= @user.height %>
-Tickets: <%= @user.tickets %>
-Admin?: <%= @user.admin %>
+<br>
+<br>
+
+Name: <%= @user.name %><br>
+Mood: <%= @user.mood %><br>
+Height: <%= @user.height %><br>
+Tickets: <%= @user.tickets %><br>
+<br>
+<%= link_to('See attractions', attractions_path) %><br>
+<%= link_to('Log Out', signout_path, method: :delete) %>
+
+<br>
+<br>
+
+<% @user.rides.each do |ride| %>
+<%= ride.attraction.name %><br>
+<% end %>

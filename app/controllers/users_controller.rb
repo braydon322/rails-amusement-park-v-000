@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user
       session[:user_id] = @user.id
-      binding.pry
       if params[:user][:admin].to_i == 1
         @user.admin = true
         @user.save
@@ -19,10 +18,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    if session[:user_id]
-      @user = User.find(params[:id])
+    if session[:user_id] == nil
+      redirect_to "/"
     else
-      redirect_to root
+      @user = User.find(params[:id])
     end
   end
 

@@ -1,0 +1,15 @@
+ATTRACTIONS INDEX PAGE
+<br>
+<br>
+<% @attractions.all.each do |attraction| %>
+  <%=attraction.name%> -
+  <% if @user.admin %>
+  <%= link_to("Show #{attraction.name}", attraction_path(attraction)) %><br>
+  <% else %>
+  <%= link_to("Go on #{attraction.name}", attraction_path(attraction)) %><br>
+  <% end %>
+<% end %>
+<br>
+<% if @user.admin == true %>
+<%= link_to "New Attraction", new_attraction_path %>
+<% end %>
